@@ -37,8 +37,9 @@ func (p *Postgres) SchemaMutations(ctx context.Context) ([]schemast.Mutator, err
 	if err != nil {
 		return nil, err
 	}
-	var tables []*schema.Table
+	tables := s.Tables
 	if p.excludedTables != nil {
+		tables = nil
 		excludedTableNames := make(map[string]bool)
 		for _, t := range p.excludedTables {
 			excludedTableNames[t] = true
@@ -47,7 +48,6 @@ func (p *Postgres) SchemaMutations(ctx context.Context) ([]schemast.Mutator, err
 		for _, t := range s.Tables {
 			if !excludedTableNames[t.Name] {
 				tables = append(tables, t)
-			} else {
 			}
 		}
 	}

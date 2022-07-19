@@ -1,9 +1,6 @@
 name: Continuous Integration
-on:
-  push:
-    branches:
-      - master
-  pull_request:
+on: push
+
 jobs:
   lintgo:
     runs-on: ubuntu-latest

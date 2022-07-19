@@ -48,7 +48,6 @@ func (p *Postgres) SchemaMutations(ctx context.Context) ([]schemast.Mutator, err
 		for _, t := range s.Tables {
 			if !excludedTableNames[t.Name] {
 				tables = append(tables, t)
-			} else {
 			}
 		}
 	}
